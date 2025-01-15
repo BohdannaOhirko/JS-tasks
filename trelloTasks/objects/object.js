@@ -16,6 +16,15 @@ console.log(book);
 delete book.title;
 console.log(book);
 
+
+
+
+
+
+
+
+
+
 // const bookDescription = {
 //   title: 410,
 //   author: "Stephen King",
