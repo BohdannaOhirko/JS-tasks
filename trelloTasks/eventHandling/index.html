@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Event handling</title>
+  </head>
+  <body>
+    <div class="img">
+      <div class="container">
+        <form action="#" id="form" method="GET">
+          <fieldset>
+            <legend>Registration</legend>
+            <div>
+              <label for="name">Username:</label>
+              <div class="error__output"></div>
+              <input type="text" id="name" name="name" placeholder="user" />
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <div class="error__output"></div>
+              <input type="email" id="email" name="email" placeholder="email" />
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <div class="error__output"></div>
+              <div class="success__output"></div>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+
+            <input type="submit" value="Sign up" />
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script src="eventHandling.js"></script>
+  </body>
+</html>
