@@ -14,21 +14,39 @@
             <legend>Registration</legend>
             <div>
               <label for="name">Username:</label>
+              <div class="success__output"></div>
               <div class="error__output"></div>
-              <input type="text" id="name" name="name" placeholder="user" />
+              <input
+                type="text"
+                id="name"
+                class="input"
+                name="name"
+                placeholder="user"
+              />
             </div>
             <div>
               <label for="email">Email:</label>
+              <div class="success__output"></div>
               <div class="error__output"></div>
-              <input type="email" id="email" name="email" placeholder="email" />
+
+              <input
+                type="email"
+                id="email"
+                class="input"
+                name="email"
+                placeholder="email"
+              />
             </div>
             <div>
               <label for="password">Password:</label>
-              <div class="error__output"></div>
               <div class="success__output"></div>
+              <div class="error__output"></div>
+              <div id="validation__output"></div>
+
               <input
                 type="password"
                 id="password"
+                class="input"
                 name="password"
                 placeholder="password"
               />

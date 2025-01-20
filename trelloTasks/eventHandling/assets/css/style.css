@@ -49,7 +49,14 @@ input[type="submit"]:hover {
   margin-bottom: 10px;
 }
 .success__output {
-  display: none;
+  display: block;
+  color: green;
+}
+#validation__output {
+  display: block;
+  width: 200px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 .invalid {
   border: 2px solid #ed6a5e;

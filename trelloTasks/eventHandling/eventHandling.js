@@ -19,27 +19,52 @@
 // Забезпечте динамічну валідацію даних в полях форми.
 
 // Відображайте та приховуйте повідомлення про помилки та підказки залежно від взаємодії користувача.
-// const form = document.forms[0];
+
 const form = document.getElementById("form");
 const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
 const passwordInput = document.querySelector("#password");
 const errorElement = document.querySelector(".error__output");
-const successElement = document.querySelector(".success__output");
+const successElement = Array.from(
+  document.querySelectorAll(".success__output")
+);
+const inputArray = Array.from(document.querySelectorAll(".input"));
+inputArray.forEach((element) => {
+  const giveHint = (e) => {
+    const enteredInput = e.target.getAttribute("type");
+    const hints = {
+      text: "name",
+      email: "email",
+      password: "password",
+    };
+
+    successElement.forEach((e) => {
+      e.innerHTML =
+        hints[enteredInput] !== undefined
+          ? "Please enter your " + `${hints[enteredInput]}`
+          : "";
+    });
+  };
+  inputArray.forEach((element) => {
+    element.addEventListener("focus", (e) => {
+      e.preventDefault();
+      giveHint(e);
+    });
+    element.addEventListener("blur", (e) => {
+      e.preventDefault();
+      successElement.forEach((e) => {
+        e.innerHTML = "";
+      });
+    });
+  });
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   validateInputs();
 });
-passwordInput.addEventListener("focus", () => {
-  successElement.style.display = "block";
-});
-passwordInput.addEventListener("blur", () => {
-  successElement.style.display = "block";
-});
-
+//підказки одночасно виникають у всіх віконцях, чи це емейл, чи це пароль, а треба, щоб відповідно до натиснутого елемента, пробувала таргет, не працює
 const validateInputs = () => {
-  // let pattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
   if (nameInput.value === "" || nameInput.value == null) {
     displayError(nameInput, "Name is required!");
   } else {
@@ -50,11 +75,11 @@ const validateInputs = () => {
   } else {
     setSuccess(emailInput);
   }
-  if (passwordInput.value.length < 6) {
-    displayError(passwordInput, "Enter your password");
-  } else {
-    setSuccess(passwordInput);
-  }
+  // if (passwordInput.value.length < 6) {
+  //   displayError(passwordInput, "Enter your password");
+  // } else {
+  //   setSuccess(passwordInput);
+  // }
 };
 
 const displayError = (element, msg) => {
@@ -72,44 +97,27 @@ const setSuccess = (element) => {
   element.classList.remove("invalid");
 };
 
-//Розібрати цей код!!!!
-// passwordInput.onkeyup = function () {
-//   // checking uppercase letters
-//   let uppercaseRegex = /[A-Z]/g;
-//   if (passwordInput.value.match(uppercaseRegex)) {
-//       passwordMessageItems[1].classList.remove("invalid");
-//       passwordMessageItems[1].classList.add("valid");
-//   } else {
-//       passwordMessageItems[1].classList.remove("valid");
-//       passwordMessageItems[1].classList.add("invalid");
-//   }
+passwordInput.addEventListener("focus", function (e) {
+  e.preventDefault();
+  validatePassword();
+});
 
-//   // checking lowercase letters
-//   let lowercaseRegex = /[a-z]/g;
-//   if (passwordInput.value.match(lowercaseRegex)) {
-//       passwordMessageItems[0].classList.remove("invalid");
-//       passwordMessageItems[0].classList.add("valid");
-//   } else {
-//       passwordMessageItems[0].classList.remove("valid");
-//       passwordMessageItems[0].classList.add("invalid");
-//   }
+passwordInput.addEventListener("blur", function (e) {
+  e.preventDefault();
+  //як видалити функцію підказки для паролю
+});
 
-//   // checking the number
-//   let numbersRegex = /[0-9]/g;
-//   if (passwordInput.value.match(numbersRegex)) {
-//       passwordMessageItems[2].classList.remove("invalid");
-//       passwordMessageItems[2].classList.add("valid");
-//   } else {
-//       passwordMessageItems[2].classList.remove("valid");
-//       passwordMessageItems[2].classList.add("invalid");
-//   }
-
-//   // Checking length of the password
-//   if (passwordInput.value.length >= 8) {
-//       passwordMessageItems[3].classList.remove("invalid");
-//       passwordMessageItems[3].classList.add("valid");
-//   } else {
-//       passwordMessageItems[3].classList.remove("valid");
-//       passwordMessageItems[3].classList.add("invalid");
-//   }
-// }
+//не працює валідація
+const validatePassword = (element) => {
+  let regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8}$/;
+  const validationOutput = document.querySelector("#validation__output");
+  validationOutput.innerText =
+    "Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, and one underscore, and it must be 8 characters long.";
+  if (passwordInput.value.match(regex)) {
+    element.classList.remove("invalid");
+    element.classList.add("valid");
+  } else {
+    element.classList.remove("valid");
+    element.classList.add("invalid");
+  }
+};
