@@ -1,0 +1,28 @@
+body {
+  color: #2b2a2a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+button {
+  margin: 5px;
+  background-color: rgb(186, 196, 191);
+  border-radius: 5px;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.35em 0.6em;
+  position: relative;
+}
+
+button:active {
+  top: 5px;
+  left: 5px;
+}
