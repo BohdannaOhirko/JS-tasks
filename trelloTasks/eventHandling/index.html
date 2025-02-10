@@ -14,8 +14,6 @@
             <legend>Registration</legend>
             <div>
               <label for="name">Username:</label>
-              <div class="success__output"></div>
-              <div class="error__output"></div>
               <input
                 type="text"
                 id="name"
@@ -23,12 +21,10 @@
                 name="name"
                 placeholder="user"
               />
+              <small class="error__output"></small>
             </div>
             <div>
               <label for="email">Email:</label>
-              <div class="success__output"></div>
-              <div class="error__output"></div>
-
               <input
                 type="email"
                 id="email"
@@ -36,13 +32,10 @@
                 name="email"
                 placeholder="email"
               />
+              <small class="error__output"></small>
             </div>
             <div>
               <label for="password">Password:</label>
-              <div class="success__output"></div>
-              <div class="error__output"></div>
-              <div id="validation__output"></div>
-
               <input
                 type="password"
                 id="password"
@@ -50,8 +43,9 @@
                 name="password"
                 placeholder="password"
               />
+              <small class="error__output"></small>
             </div>
-
+            <p class="success__output"></p>
             <input type="submit" value="Sign up" />
           </fieldset>
         </form>

@@ -52,12 +52,6 @@ input[type="submit"]:hover {
   display: block;
   color: green;
 }
-#validation__output {
-  display: block;
-  width: 200px;
-  color: #fff;
-  margin-bottom: 10px;
-}
 .invalid {
   border: 2px solid #ed6a5e;
 }
