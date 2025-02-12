@@ -12,6 +12,9 @@ body {
   background-color: #fafafa;
   transition: 0.4s;
 }
+.out p {
+  line-height: 1.5;
+}
 .dark-mode {
   color: #fafafa;
   background-color: #1d1d1d;

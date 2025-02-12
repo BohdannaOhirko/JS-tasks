@@ -31,16 +31,46 @@
 
 // Захист даних: Впровадіть шифрування даних перед їх зберіганням у LocalStorage/SessionStorage для підвищення безпеки.
 
-// https://github.com/vitaliysummer2022/js/tree/main/switchMode
-// https://www.freecodecamp.org/news/use-local-storage-in-modern-applications/
-// https://www.youtube.com/watch?v=Zrpy0B3dYJA
-// https://javascript.org.ua/yak-sinhronizuvati-dani-mizh-kilkoma-vkladkami-brauzera-za-dopomogoyu-javascript/
 const stateUser = {
   theme: "dark",
   language: "english",
   loginStatus: true,
 };
 localStorage.setItem("user", JSON.stringify(stateUser));
+
+const body = document.body;
+const toggle = document.querySelector("button");
+let mode = "light";
+
+if (!localStorage.getItem("mode")) {
+  localStorage.setItem("mode", mode);
+} else {
+  mode = localStorage.getItem("mode");
+}
+if (mode === "dark") {
+  changeToggle(mode);
+}
+toggle.addEventListener("click", () => {
+  if (mode === "light") {
+    changeToggle("dark");
+  } else {
+    changeToggle("light");
+  }
+});
+
+function changeToggle(newMode) {
+  if (newMode === "dark") {
+    body.className = "dark-mode";
+    mode = "dark";
+    toggle.title = "Змінити на світлу тему";
+  } else {
+    body.className = "";
+    mode = "light";
+    toggle.title = "Змінити на темну тему";
+  }
+  localStorage.setItem("mode", mode);
+}
 window.addEventListener("storage", () => {
-  document.querySelector(".out").textContent = localStorage.getItem("user");
+  changeToggle(newMode);
+  document.querySelector(".out").textContent = localStorage.getItem("mode");
 });
