@@ -32,7 +32,6 @@
 // Захист даних: Впровадіть шифрування даних перед їх зберіганням у LocalStorage/SessionStorage для підвищення безпеки.
 
 const stateUser = {
-  theme: "dark",
   language: "english",
   loginStatus: true,
 };
@@ -40,7 +39,13 @@ localStorage.setItem("user", JSON.stringify(stateUser));
 
 const body = document.body;
 const toggle = document.querySelector("button");
+const out = document.querySelector(".out");
 let mode = "light";
+
+window.addEventListener("storage", () => {
+  body.classList.toggle("dark-mode");
+  out.textContent = localStorage.getItem("user");
+});
 
 if (!localStorage.getItem("mode")) {
   localStorage.setItem("mode", mode);
@@ -50,14 +55,6 @@ if (!localStorage.getItem("mode")) {
 if (mode === "dark") {
   changeToggle(mode);
 }
-toggle.addEventListener("click", () => {
-  if (mode === "light") {
-    changeToggle("dark");
-  } else {
-    changeToggle("light");
-  }
-});
-
 function changeToggle(newMode) {
   if (newMode === "dark") {
     body.className = "dark-mode";
@@ -70,7 +67,10 @@ function changeToggle(newMode) {
   }
   localStorage.setItem("mode", mode);
 }
-window.addEventListener("storage", () => {
-  changeToggle(newMode);
-  document.querySelector(".out").textContent = localStorage.getItem("mode");
+toggle.addEventListener("click", () => {
+  if (mode === "light") {
+    changeToggle("dark");
+  } else {
+    changeToggle("light");
+  }
 });

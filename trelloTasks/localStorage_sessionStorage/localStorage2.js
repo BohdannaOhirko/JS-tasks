@@ -1,5 +1,6 @@
 const body = document.body;
 const toggle = document.querySelector("button");
+const out = document.querySelector(".out");
 let mode = "light";
 
 if (!localStorage.getItem("mode")) {
@@ -16,6 +17,8 @@ toggle.addEventListener("click", () => {
   } else {
     changeToggle("light");
   }
+  out.textContent = `changed theme: ${mode}`;
+  localStorage.setItem("mode", mode);
 });
 
 function changeToggle(newMode) {
@@ -30,13 +33,3 @@ function changeToggle(newMode) {
   }
   localStorage.setItem("mode", mode);
 }
-
-let theme;
-toggle.addEventListener("click", () => {
-  if (changeToggle(mode)) {
-    let theme = dark;
-    localStorage.setItem("user", theme);
-  }
-
-  localStorage.setItem("mode", mode);
-});
