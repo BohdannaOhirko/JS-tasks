@@ -58,7 +58,7 @@ languageSelector.addEventListener("change", (e) => {
   const selectedLanguage = e.target.value;
   setLanguage(selectedLanguage);
 });
-btnClear.addEventListener("click", (e) => {
+btnClear.addEventListener("click", () => {
   clearStorage();
 });
 
@@ -73,6 +73,7 @@ function setLanguage(lang) {
 }
 
 // Обробляємо випадок перевищення його через try catch
+
 function saveLanguages() {
   try {
     let languages = defaultState.languages;
@@ -91,6 +92,18 @@ function saveLanguages() {
 
 // Очистити сховище
 function clearStorage() {
-  localStorage.clear();
-  console.log("localstorage is cleared");
+  const languages = defaultState.languages;
+  const selectLang = Array.from(languageSelector.options).map(
+    (option) => option.value
+  );
+  for (key of languages) {
+    if (selectLang.includes(key)) {
+      setTimeout(() => {
+        localStorage.removeItem("languages");
+        console.log("localstorage is cleared", key);
+      }, 1000);
+    } else {
+      console.log("try again");
+    }
+  }
 }
