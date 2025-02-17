@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Local Storage</title>
+  </head>
+  <body>
+    <fieldset>
+      <label for="select-language">Вибрати мову</label>
+      <select name="lang" id="select-language">
+        <option selected hidden></option>
+        <option id="lang-en" value="en">English</option>
+        <option id="lang-pl" value="pl">Polish</option>
+        <option id="lang-ua" value="ua">Українська</option>
+      </select>
+      <div>
+        <p>Вибрана мова:</p>
+        <p id="textLang"></p>
+      </div>
+      <button id="btn">Встановити мову</button>
+      <button id="btn2">Очистити сховище</button>
+    </fieldset>
+    <script src="localStorage.js"></script>
+  </body>
+</html>
