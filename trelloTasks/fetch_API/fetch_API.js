@@ -91,3 +91,4 @@ window.onload = () => {
 registerBtn.addEventListener("click", registerServiceWorker);
 unregisterBtn.addEventListener("click", unregisterServiceWorker);
 loadUsersBtn.addEventListener("click", renderUsers);
+loadUsersBtn.addEventListener("click", renderUsers);
