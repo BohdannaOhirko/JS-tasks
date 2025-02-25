@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Game</title>
+  </head>
+  <body>
+    <h1>Гравець vs Монстр</h1>
+
+    <div class="game-container">
+      <div class="character">
+        <div class="avatar">
+          <img src="assets/img/avatar-player.jpeg" alt="avatar-player" />
+        </div>
+        <h2>Гравець</h2>
+        <p>❤️ Здоров'я: <span id="player-health">100</span></p>
+        <button class="btn-attack">🔪 Атакувати</button>
+        <button class="btn-heal">💊 Вилікуватися</button>
+      </div>
+      <div id="message-player"></div>
+      <div id="message-monster"></div>
+      <div class="character">
+        <div class="avatar">
+          <img src="assets/img/avatar-monster.jpeg" alt="avatar-monster" />
+        </div>
+        <h2>Монстр</h2>
+        <p>💀 Здоров'я: <span id="monster-health">100</span></p>
+        <button>🔪 Атакувати</button>
+      </div>
+    </div>
+
+    <p id="message"></p>
+
+    <script src="script.js"></script>
+  </body>
+</html>
