@@ -8,6 +8,9 @@ body {
 h1 {
   margin-top: 20px;
 }
+h2:hover {
+  color: red;
+}
 
 .game-container {
   display: flex;
@@ -21,17 +24,32 @@ h1 {
   border-radius: 10px;
   width: 200px;
 }
-
+.avatar img {
+  width: 100%;
+  border-radius: 5px;
+}
 button {
   display: block;
   margin: 10px auto;
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  color: white;
+  border: none;
+  background-color: transparent;
 }
-
-#message {
+button:hover {
   font-size: 20px;
-  margin-top: 30px;
+  border: 1px solid rgb(136, 111, 111);
+  border-radius: 10px;
+}
+#message-player {
+  font-size: 20px;
+  margin-top: 20px;
   color: yellow;
+}
+#message-monster {
+  font-size: 20px;
+  margin-top: 20px;
+  color: red;
 }
