@@ -105,6 +105,42 @@ console.log(XO("zzzzO"));
 // "middle" --> "dd"
 // "A" --> "A"
 function getMiddle(s) {
-  //Code goes here!
-  return "";
+  let strLength = s.length;
+  let middleStr = Math.floor(strLength / 2);
+  return strLength % 2 === 0 ? s[middleStr - 1] + s[middleStr] : s[middleStr];
 }
+
+console.log(getMiddle("test"));
+
+// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
+// The sum of these multiples is 23.
+
+// Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
+
+// Additionally, if the number is negative, return 0.
+
+// Note: If the number is a multiple of both 3 and 5, only count it once.
+
+function solution(number) {
+  if (number < 0) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < number; ++i) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+console.log(solution(13));
+
+function sumMultiple(number) {
+  let sum = [...Array(number).keys()] // для отримання ітератора індекса масивів
+    .map((n) => n + 1)
+    .filter((n) => n % 3 === 0 || n % 5 === 0)
+    .reduce((acc, n) => acc + n, 0);
+  return sum;
+}
+console.log(sumMultiple());
