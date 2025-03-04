@@ -1,61 +1,43 @@
-// Крок 1: Визначення основних об'єктів гри
-// Гравець (Player) – об'єкт з властивостями: ім'я, здоров'я, сила, ліки.
-
-// Монстр (Monster) – об'єкт з властивостями: вид, здоров'я, сила.
-
-// Предмет (Item) – об'єкт з властивостями: назва, тип (зброя, ліки), ефект.
 const btnAttack = document.querySelector(".btn-attack");
-const messageMonster = document.getElementById("message-monster");
+const btnHeal = document.querySelector(".btn-heal");
+const btnAttackMonster = document.querySelector(".btn-attack-monster");
 const messagePlayer = document.getElementById("message-player");
-const playerHealth = document.getElementById("player-health");
-const monsterHealth = document.getElementById("monster-health");
+const messageMonster = document.getElementById("message-monster");
+const messageMonsterMed = document.getElementById("message-monster-medicine");
+const playerHealthElem = document.getElementById("player-health");
+const monsterHealthElem = document.getElementById("monster-health");
 
 class Character {
-  constructor(name, health, strength, medicine) {
+  constructor(name, health, strength) {
     this.name = name;
     this.health = health;
     this.strength = strength;
-    this.medicine = medicine;
     this.items = [];
   }
-  attack() {
-    let damage = Math.floor(Math.random() * this.strength) + 1; // Випадковий урон
-    monster.health -= damage; // Зменшуємо здоров'я
-    let playerAttack = `${this.name} атакує ${monster.name}, завдаючи ${damage} шкоди.`;
-    let messageAttack;
-    if (monster.health <= 0) {
-      monster.health = 0;
-      monsterHealth.innerHTML = 0;
-      messageAttack = `${monster.name} переможений`;
+  attack(target) {
+    let damage = Math.floor(Math.random() * this.strength) + 1;
+    target.health -= damage;
+    if (target.health < 0) target.health = 0;
+    playerHealthElem.innerHTML = player.health;
+    monsterHealthElem.innerHTML = monster.health;
+    let msg = `${this.name} атакує ${target.name} і завдає ${damage} шкоди.`;
+    if (target.health === 0) {
+      msg += ` ${target.name} переможений!`;
     } else {
-      messageAttack = `${monster.name} має ${monster.medicine} ліків`;
+      msg += ` ${target.name} має ${target.health} здоров'я.`;
     }
-    return { first: playerAttack, second: messageAttack };
+    return msg;
   }
-  useItems(items, index) {
-    if (items[index]) {
-      const item = item[index];
-      console.log(`${this.name} використовує ${item.name}`);
-
-      if (this.items.includes(item)) {
-        item.activate(this, monster);
-        this.items = this.items.filter((i) => i !== item);
-      } else {
-        console.log("Предмет не знайдено!");
-      }
+  useItem(index, target) {
+    const item = this.items[index];
+    if (item) {
+      item.activate(this, target);
+      this.items.splice(index, 1);
+    } else {
+      console.log("Предмет не знайдено!");
     }
   }
 }
-const player = new Character("player-1", 100, 20, 10);
-const monster = new Character("monster", 100, 15, 10);
-player.useItems(item, 0);
-btnAttack.addEventListener("click", (e) => {
-  e.preventDefault();
-  const values = player.attack();
-  messagePlayer.innerHTML = values.first;
-  messageMonster.innerHTML = values.second;
-  player.useItems(potion);
-});
 
 class Item {
   constructor(name, type, effect) {
@@ -63,36 +45,99 @@ class Item {
     this.type = type;
     this.effect = effect;
   }
-  activate(player, monster) {
+  activate(player, target) {
     if (this.type === "weapon") {
-      let extraDamage = this.effect;
-      monster.health -= extraDamage;
+      target.health -= this.effect;
       console.log(
-        `${player.name} використовує ${this.name} і збільшує атакувальну силу на  ${this.effect} %!`
+        `${player.name} використовує ${this.name} і завдає додатковий урон ${this.effect}.`
       );
-    } else if (this.type === "shield") {
+    } else if (this.type === "shield" || this.type === "magic-item") {
       player.health += this.effect;
       console.log(
-        `${player.name} використовує ${this.name} і збільшує захист на ${this.effect} %`
+        `${player.name} використовує ${this.name} і відновлює ${this.effect} здоров'я.`
       );
-    } else if (this.type === "magic-item") {
-      player.energy += this.effect;
-      console.log(
-        `${player.name} використовує ${this.name} і відновлює ${this.effect} здоров'я!`
-      );
+    }
+    playerHealthElem.innerHTML = player.health;
+    monsterHealthElem.innerHTML = target.health;
+  }
+}
+
+class Player extends Character {
+  constructor(name, health, strength, medicine) {
+    super(name, health, strength);
+    this.medicine = medicine;
+  }
+  heal(amount) {
+    if (this.medicine > 0) {
+      this.health += amount;
+      this.medicine--;
+      playerHealthElem.innerHTML = this.health;
+      return `${this.name} лікується на ${amount} одиниць. Залишилось ліків: ${this.medicine}`;
+    } else {
+      return "Ліків немає";
     }
   }
 }
-const sword = new Item("Меч світла", "weapon", 20);
-const shield = new Item("Щит древніх", "shield", 30);
-const potion = new Item("Зілля відновлення", "magic-item", 50);
-const items = [sword, shield, potion];
 
-class Monster {
-  constructor(type, health, strength) {
-    this.type = type;
-    this.health = health;
-    this.strength = strength;
+class Monster extends Character {
+  constructor(name, health, strength, attackPower) {
+    super(name, health, strength);
+    this.attackPower = attackPower;
+  }
+  attack(target) {
+    let damage = this.attackPower + Math.floor(Math.random() * 5);
+    target.health -= damage;
+    if (target.health < 0) target.health = 0;
+    playerHealthElem.innerHTML = target.health;
+    let msg = `${this.name} атакує ${target.name} і завдає ${damage} шкоди.`;
+    if (target.health === 0) {
+      msg += ` ${target.name} переможений!`;
+    }
+    return msg;
   }
 }
-const monster1 = new Monster("monster-1", 100, 90);
+
+const sword = new Item("Меч світла", "weapon", 20);
+const shieldItem = new Item("Щит древніх", "shield", 30);
+const potion = new Item("Зілля відновлення", "magic-item", 50);
+
+const player = new Player("Player-1", 100, 20, 3);
+player.items.push(sword);
+
+const monster = new Monster("Orc", 100, 15, 5);
+const monsters = [
+  new Monster("Goblin", 100, 10, 3),
+  new Monster("Dragon", 150, 25, 8),
+  new Monster("Orc", 100, 15, 5)
+];
+
+function selectWeapon() {
+  const weaponSelect = document.getElementById("weaponSelect");
+  const selectedOption = weaponSelect.options[weaponSelect.selectedIndex];
+  const weaponName = selectedOption.getAttribute("data-name");
+  const damage = parseInt(selectedOption.value);
+  return `Ви обрали зброю ${weaponName}, що завдає ${damage} шкоди`;
+}
+
+btnAttack.addEventListener("click", (e) => {
+  e.preventDefault();
+  let msg = player.attack(monster);
+  messagePlayer.innerHTML = msg;
+  if (player.items.length > 0) {
+    player.useItem(0, monster);
+  }
+});
+
+btnAttackMonster.addEventListener("click", (e) => {
+  e.preventDefault();
+  let msg = monster.attack(player);
+  messageMonsterMed.innerHTML = msg;
+});
+
+btnHeal.addEventListener("click", (e) => {
+  e.preventDefault();
+  let msg = player.heal(20);
+  messagePlayer.innerHTML = msg;
+});
+
+console.log(selectWeapon());
