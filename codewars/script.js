@@ -144,3 +144,57 @@ function sumMultiple(number) {
   return sum;
 }
 console.log(sumMultiple());
+
+// Alice and Bob were on a holiday. Both of them took many pictures of the places they've been,
+//  and now they want to show Charlie their entire collection. However, Charlie doesn't like these sessions,
+//  since the motif usually repeats. He isn't fond of seeing the Eiffel tower 40 times.
+// He tells them that he will only sit for the session if they show the same motif at most N times. Luckily,
+// Alice and Bob are able to encode the motif as a number. Can you help them to remove numbers such
+// that their list contains each number only up to N times, without changing the order?
+
+// Task
+// Given a list and a number, create a new list that contains each number of list at most N times,
+// without reordering.
+// For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3],
+// you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times,
+// and then take 3, which leads to [1,2,3,1,2,3].
+// With list [20,37,20,21] and number 1, the result would be [20,37,21].
+
+function deleteNth(arr, n) {
+  const count = []; // ініціалізація масиву, де зберігатимемо кількіть входжень
+  return arr.filter((item) => {
+    count[item] = (count[item] || 0) + 1; //якщл елемент ще не з'являвся, то беремо 0, +1 це збільшуємо лічильник для цього елемента
+    return count[item] <= n;
+  });
+}
+console.log(deleteNth([20, 37, 20, 21], 1));
+
+// Usually when you buy something, you're asked whether your credit card number,
+// phone number or answer to your most secret question is still correct.
+// However, since someone could look over your shoulder, you don't want that shown on your screen.
+// Instead, we mask it.
+
+// Your task is to write a function maskify, which changes all but the last four characters into '#'.
+
+// Examples (input --> output):
+// "4556364607935616" --> "############5616"
+//      "64607935616" -->      "#######5616"
+//                "1" -->                "1"
+//                 "" -->                 ""
+
+// // "What was the name of your first pet?"
+// "Skippy" --> "##ippy"
+// "Nananananananananananananananana Batman!" --> "####################################man!"
+
+function maskify(cc) {
+  let arr = cc.split("");
+  let arrNonMaskify = arr.splice(arr.length - 4, arr.length);
+  let arrMaskify = arr.splice(arrNonMaskify, arr.length);
+
+  return arrMaskify
+    .map((x) => x.replace(x, "#"))
+    .toString()
+    .concat(",", arrNonMaskify)
+    .replaceAll(",", "");
+}
+console.log(maskify("4556364607935616"));
