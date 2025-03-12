@@ -220,3 +220,43 @@ function descendingOrder(n) {
 }
 
 console.log(descendingOrder(42145));
+
+// Trolls are attacking your comment section!
+
+// A common way to deal with this situation is to remove all of the vowels from the trolls' comments,
+// neutralizing the threat.
+
+// Your task is to write a function that takes a string and return a new string with all vowels removed.
+
+// For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+// Note: for this kata y isn't considered a vowel.
+
+function disemvowel(str) {
+  let replace = "[aeuio]";
+  let regExp = new RegExp(replace, "gi");
+  return str.replace(regExp, "");
+}
+
+console.log(disemvowel("HEllo, world!"));
+
+// You are given an array (which will have a length of at least 3,
+//   but could be very large) containing integers. The array is either entirely comprised of odd integers
+//   or entirely comprised of even integers except for a single integer N. Write a method
+//    that takes the array as an argument and returns this "outlier" N.
+
+// Examples
+// [2, 4, 0, 100, 4, 11, 2602, 36] -->  11 (the only odd number)
+
+// [160, 3, 1719, 19, 11, 13, -21] --> 160 (the only even number)
+
+function findOutlier(integers) {
+  let oddNumber = integers.filter((num) => num % 2 !== 0);
+  let evenNumber = integers.filter((num) => num % 2 == 0);
+  if (oddNumber.length < evenNumber.length) {
+    return parseInt(oddNumber);
+  } else if (oddNumber.length > evenNumber.length) {
+    return parseInt(evenNumber);
+  }
+}
+console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21]));
