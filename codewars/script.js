@@ -260,3 +260,86 @@ function findOutlier(integers) {
   }
 }
 console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21]));
+
+// Given two integers a and b, which can be positive or negative,
+// find the sum of all the integers between and including them and return it.
+// If the two numbers are equal return a or b.
+
+// Note: a and b are not ordered!
+
+// Examples (a, b) --> output (explanation)
+// (1, 0) --> 1 (1 + 0 = 1)
+// (1, 2) --> 3 (1 + 2 = 3)
+// (0, 1) --> 1 (0 + 1 = 1)
+// (1, 1) --> 1 (1 since both are same)
+// (-1, 0) --> -1 (-1 + 0 = -1)
+// (-1, 2) --> 2 (-1 + 0 + 1 + 2 = 2)
+// Your function should only return a number, not the explanation about how you get that number.
+
+function getSum(a, b) {
+  const min = a < b ? a : b;
+  const max = a < b ? b : a;
+
+  let sum = 0;
+  for (let i = min; i <= max; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+console.log(getSum(3, -4));
+
+//
+Object.defineProperty(String.prototype, "toJadenCase", {
+  value: function () {
+    return this.split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  },
+});
+let sentence = "how can mirrors be real if our eyes aren't real";
+console.log(sentence.toJadenCase());
+
+// Object.defineProperty:
+// Цей метод дозволяє вам додавати або змінювати властивості в об'єктах. У вашому випадку він використовується для додавання нового методу до всіх рядків у JavaScript.
+// String.prototype — це об'єкт, що містить всі методи для рядків (наприклад, toLowerCase, toUpperCase, тощо).
+// "toJadenCase" — це ім'я нового методу, який ми додаємо до прототипу рядка.
+// value: function():
+
+// Це сама функція, яку ви хочете додати як метод до рядків. Вона визначена як анонімна функція (тобто без імені), і буде виконуватись, коли ви викликаєте toJadenCase() на рядку.
+// this:
+
+// this всередині методу посилається на рядок, на якому викликається метод toJadenCase. Наприклад:
+
+// "how are you?".toJadenCase();
+// Тут this буде "how are you?".
+////
+
+// Write a function, which takes a non-negative integer (seconds) as input and returns the time
+//  in a human-readable format (HH:MM:SS)
+
+// HH = hours, padded to 2 digits, range: 00 - 99
+// MM = minutes, padded to 2 digits, range: 00 - 59
+// SS = seconds, padded to 2 digits, range: 00 - 59
+// The maximum time never exceeds 359999 (99:59:59)
+
+// You can find some examples in the test fixtures.
+
+function humanReadable(seconds) {
+  if (seconds < 0) return "Invalid input";
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor((seconds % 3600) / 60);
+  let getSeconds = seconds % 60;
+
+  return (
+    hours.toString().padStart(2, "0") +
+    ":" +
+    minutes.toString().padStart(2, "0") +
+    ":" +
+    getSeconds.toString().padStart(2, "0")
+  );
+}
+
+console.log(humanReadable(359999));
+console.log(humanReadable(11));
+console.log(humanReadable(67));
