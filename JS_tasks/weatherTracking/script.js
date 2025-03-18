@@ -4,7 +4,7 @@ weatherBtn.addEventListener("click", (e) => {
   fetchWeather();
   setInterval(fetchWeather, 10000);
 });
-const API_KEY = "02c2afb60ef4834aaa697a2fba012372";
+const API_KEY = "";
 const city = "Львів";
 const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=uk&appid=${API_KEY}`;
 
