@@ -7,7 +7,7 @@
     <title>Game</title>
   </head>
   <body>
-    <h1>Гравець vs Монстр</h1>
+    <h1>Битва між гравцем та монстром</h1>
 
     <div class="game-container">
       <div class="character">
@@ -18,16 +18,27 @@
         <p>❤️ Здоров'я: <span id="player-health">100</span></p>
         <button class="btn-attack">🔪 Атакувати</button>
         <button class="btn-heal">💊 Вилікуватися</button>
+        <label for="weaponSelect">Оберіть зброю:</label>
+        <select id="weaponSelect">
+          <option value="20" data-name="Чарівне зілля">Чарівне зілля</option>
+          <option value="20" data-name="Меч">Меч</option>
+          <option value="50" data-name="Щит">Щит</option>
+        </select>
       </div>
-      <div id="message-player"></div>
-      <div id="message-monster"></div>
+
+      <div class="message-group">
+        <div id="message-player"></div>
+        <div id="message-monster-medicine"></div>
+        <div id="message-monster"></div>
+      </div>
+
       <div class="character">
         <div class="avatar">
           <img src="assets/img/avatar-monster.jpeg" alt="avatar-monster" />
         </div>
         <h2>Монстр</h2>
         <p>💀 Здоров'я: <span id="monster-health">100</span></p>
-        <button>🔪 Атакувати</button>
+        <button class="btn-attack-monster">🔪 Атакувати</button>
       </div>
     </div>
 

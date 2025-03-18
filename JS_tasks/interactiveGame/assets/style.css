@@ -43,13 +43,33 @@ button:hover {
   border: 1px solid rgb(136, 111, 111);
   border-radius: 10px;
 }
-#message-player {
-  font-size: 20px;
-  margin-top: 20px;
-  color: yellow;
+.message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+#message-player,
 #message-monster {
   font-size: 20px;
   margin-top: 20px;
+  color: rgb(255, 51, 0);
+}
+#message-monster-medicine {
+  font-size: 20px;
+  margin-top: 20px;
+  color: rgb(225, 255, 0);
+}
+select {
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #444;
   color: red;
+  border: none;
+  appearance: none;
+}
+select:hover {
+  border: 1px solid rgb(136, 111, 111);
+  border-radius: 10px;
 }

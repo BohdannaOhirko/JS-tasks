@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Budget Calculator</title>
+  </head>
+  <body>
+    <h2>Бюджетний калькулятор</h2>
+    <form id="budgetForm">
+      <div class="category">
+        Продукти: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Заклади харчування: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Комунальні: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Розваги: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Саморозвиток: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Одяг та взуття: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Салони краси: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category">
+        Медицина: <input type="number" class="expense" value="0" />
+      </div>
+      <div class="category income">
+        Доходи: <input type="number" id="income" value="0" />
+      </div>
+    </form>
+    <button class="btnSum">Підрахувати</button>
+    <p class="total">Загальні витрати: <span id="total">0</span> грн</p>
+    <p class="total">Загальний баланс: <span id="totalBalance">0</span> грн</p>
+    <script src="script.js"></script>
+  </body>
+</html>

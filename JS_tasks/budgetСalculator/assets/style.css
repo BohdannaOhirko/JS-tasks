@@ -1,0 +1,74 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+h2 {
+  text-align: center;
+  color: #ffffff;
+  background-color: #b566b1;
+  padding: 10px;
+  border-radius: 5px;
+}
+.category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+input {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #b566b1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background-color: #a15458;
+}
+.total {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  background: #87c696;
+  color: white;
+  border-radius: 5px;
+}
+
+.income input {
+  background-color: #e0ffe0;
+  border: 2px solid #4caf50;
+  padding: 8px;
+  font-size: 16px;
+  width: 200px;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.income {
+  margin-top: 20px;
+}
+
+.income label {
+  font-weight: bold;
+  color: #4caf50;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>TaskManager</title>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <img src="assets/img/task_manager.png" alt="task_manager" />
+      </div>
+      <h1>Диспетчер завдань</h1>
+    </div>
+    <input type="text" id="task-input" placeholder="Введіть завдання" />
+    <select id="status">
+      <option value="new">Нове</option>
+      <option value="pending">В процесі</option>
+      <option value="completed">Завершено</option>
+    </select>
+    <select id="priority">
+      <option value="high">Високий</option>
+      <option value="medium">Середній</option>
+      <option value="low">Низький</option>
+    </select>
+    <button id="btn-add-task">Додати завдання</button>
+
+    <h3>Список завдань</h3>
+    <select id="sortBy">
+      <option value="status">Сортувати за статусом</option>
+      <option value="priority">Сортувати за пріоритетом</option>
+    </select>
+    <button id="sort-btn">Сортувати</button>
+    <ul id="task-list"></ul>
+    <button id="btn-clear-all">Видалити всі завдання</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
